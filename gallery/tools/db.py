@@ -34,8 +34,10 @@ def execute(query, args=None):
 def listUsers():
     #see all users
     res = execute('select * from users;')
+    print('username\tpassword\tfull_name')
+    print('-----------------------------------------')
     for row in res:
-        print(row)
+        print(row[0] + '\t\t' + row[1] + '\t\t' + row[2])
 
 def isUsernameExist(username):
     res = execute("select count(username) from users where username=%s;", (username,))
