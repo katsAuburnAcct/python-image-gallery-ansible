@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Admin Page</title>
+        <meta charset="utf-8" />
+    </head>
+    <body>
+        <h1>Admin Page</h1>
+        <h3><a href="/admin/create">Create User</a></h3>
+
+        <br/>
+        <h4>Users</h4>
+        <ul>
+            {% for user in users %}
+            <li>
+                <a href="/admin/edit/{{user.get('username')}}">User name: {{user.get('username')}} Full Name: {{user.get('fullname')}}</a>
+                <a href="/admin/delete/{{user.get('username')}}">delete</a>
+            </li>
+            {% endfor %}
+        </ul>
+    </body>
+</html>

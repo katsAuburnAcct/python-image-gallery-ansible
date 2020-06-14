@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Edit User Page</title>
+    <meta charset="utf-8" />
+</head>
+<body>
+<h1>Edit User : {{username}}</h1>
+<form action="/edit-user" method="POST">
+    <input type="hidden" name="username" value="{{username}}" />
+    New Password: <input name="password" /><br />
+    New Full name: <input name="fullName" /><br />
+    <input type="submit" value="Edit User!"/>
+</form>
+</body>
+</html>

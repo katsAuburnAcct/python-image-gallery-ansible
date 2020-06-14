@@ -1,4 +1,6 @@
 import psycopg2
+import json
+#from secrets import get_secret_image_gallery
 
 db_host = "image-gallery.c4xkuoec7dni.us-east-2.rds.amazonaws.com"
 db_name = "image_gallery"
@@ -8,6 +10,25 @@ db_user = "image_gallery"
 password_file = "/home/ec2-user/.image_gallery_config"
 
 connection = None
+
+# # returns a python dictionary
+# def get_secret():
+#     jsonString = get_secret_image_gallery()
+#     # converts JSON object to a python dictionary
+#     return json.loads(jsonString)
+#
+#
+# def get_password(secret):
+#     return secret['password']
+#
+# def get_host(secret):
+#     return secret['host']
+#
+# def get_username(secret):
+#     return secret['username']
+#
+# def get_dbname(secret):
+#     return secret['database_name']
 
 def get_password():
     f = open(password_file, "r")
@@ -19,7 +40,8 @@ def get_password():
 # Maintain a single connection to our db
 def connect():
     global connection
-    #DO NOT commit the password here, since it'll be pushed up to github!
+#     secret = get_secret()
+#     connection = psycopg2.connect(host=get_host(secret), dbname=get_dbname(secret), user=get_username(secret), password=get_password(secret))
     connection = psycopg2.connect(host=db_host, dbname=db_name, user=db_user, password=get_password())
 
 #allows user to execute their query. Returns a cursor
@@ -67,4 +89,16 @@ def deleteUser(username):
 
 def closeConnection():
     connection.close()
+
+
+def getUsers():
+    res = execute('select * from users;')
+    users = []
+    for row in res:
+        users.append(
+        {
+            'username': row[0],
+            'fullname': row[2]
+        })
+    return users
 
