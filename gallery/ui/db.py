@@ -3,7 +3,7 @@ import json
 from secrets import get_secret_image_gallery
 
 # db_host = "image-gallery.c4xkuoec7dni.us-east-2.rds.amazonaws.com"
-db_name = "image_gallery"
+#db_name = "image_gallery"
 # db_user = "image_gallery"
 
 # Notice that this file location is not part of the git repo
@@ -28,8 +28,8 @@ def get_host(secret):
 def get_username(secret):
     return secret['username']
 
-# def get_dbname(secret):
-#     return secret['databaseName']
+def get_dbname(secret):
+    return secret['databaseName']
 
 # def get_password():
 #     f = open(password_file, "r")
@@ -42,8 +42,7 @@ def get_username(secret):
 def connect():
     global connection
     secret = get_secret()
-    print(secret)
-    connection = psycopg2.connect(host=get_host(secret), dbname=db_name, user=get_username(secret), password=get_password(secret))
+    connection = psycopg2.connect(host=get_host(secret), dbname=get_dbname(secret), user=get_username(secret), password=get_password(secret))
 #     connection = psycopg2.connect(host=db_host, dbname=db_name, user=db_user, password=get_password())
 
 
