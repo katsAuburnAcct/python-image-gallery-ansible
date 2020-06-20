@@ -1,6 +1,7 @@
 import psycopg2
 import json
-from secrets import get_secret_image_gallery
+
+from mySecrets import get_secret_image_gallery
 
 # db_host = "image-gallery.c4xkuoec7dni.us-east-2.rds.amazonaws.com"
 #db_name = "image_gallery"

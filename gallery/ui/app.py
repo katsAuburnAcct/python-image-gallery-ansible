@@ -1,3 +1,6 @@
+import sys
+sys.path.append('/home/ec2-user/python-image-gallery/gallery/ui')
+
 from flask import Flask, request, render_template
 from user_admin import setupDBConnection
 from db import getUsers, addUser, editUser, deleteUser
